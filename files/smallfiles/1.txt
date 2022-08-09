@@ -1,0 +1,4 @@
+this is line1 in file1
+this is line2 in file1
+this is line3 in file1
+this is line4 in file1

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration>
+    <property>
+        <name>color</name>
+        <value>yellow</value>
+        <final>true</final>
+        <description>黄颜色</description>
+    </property>
+
+    <property>
+        <name>size</name>
+        <value>10</value>
+        <description>尺寸</description>
+    </property>
+
+    <property>
+        <name>color-size</name>
+        <value>${color}-${size}</value>
+    </property>
+</configuration>
