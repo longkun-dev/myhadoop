@@ -1,6 +1,5 @@
-package im.yuki.myhadoop.ch5.service;
+package im.yuki.myhadoop.ch3.service;
 
-import im.yuki.myhadoop.ch5.constant.FSConstant;
 import org.apache.commons.io.IOUtils;
 import org.apache.hadoop.fs.FsUrlStreamHandlerFactory;
 
@@ -16,17 +15,23 @@ import java.net.URL;
 public class ConnectHDFS {
 
     static {
+        // 每个 Java 虚拟机只能调用一次
         URL.setURLStreamHandlerFactory(new FsUrlStreamHandlerFactory());
     }
 
     public static void ope() {
         InputStream inputStream;
         try {
-            inputStream = new URL(FSConstant.HDFS_URL + "/user/longkun/files/hello.txt").openStream();
+            inputStream = new URL("hdfs://hadoop00:9000/user/longkun/myhadoop/ch3/textfiles/temperature.txt")
+                    .openStream();
             IOUtils.copy(inputStream, System.out, 2048);
             IOUtils.closeQuietly(inputStream);
         } catch (Exception e) {
             System.out.println("处理异常");
         }
+    }
+
+    public static void main(String[] args) {
+        ConnectHDFS.ope();
     }
 }

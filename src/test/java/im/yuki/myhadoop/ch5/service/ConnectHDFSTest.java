@@ -1,5 +1,6 @@
 package im.yuki.myhadoop.ch5.service;
 
+import im.yuki.myhadoop.ch3.service.ConnectHDFS;
 import org.junit.Test;
 
 /**
