@@ -8,6 +8,6 @@ package im.yuki.myhadoop.ch5.constant;
  */
 public class FSConstant {
 
-    public static final String HDFS_URL = "hdfs://localhost:9000";
+    public static final String HDFS_URL = "hdfs://hadoop00:9000";
 
 }

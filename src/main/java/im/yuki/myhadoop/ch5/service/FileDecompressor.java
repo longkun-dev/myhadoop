@@ -1,5 +1,6 @@
 package im.yuki.myhadoop.ch5.service;
 
+import im.yuki.myhadoop.ch5.constant.FSConstant;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
@@ -15,33 +16,33 @@ import java.net.URI;
  * @author longkun
  * @version V1.0
  * @date 2022/7/14 8:15 PM
- * @description 文件压缩
+ * @description 根据文件扩展名选取合适的 codec 进行解压
  */
-public class FileCompressor {
+public class FileDecompressor {
     public static void main(String[] args) throws Exception {
-        String URL = "hdfs://localhost:9000/user/longkun/files/set_queue.sh.gz";
+        String FILE_PATH = "/user/longkun/myhadoop/ch5/file_decompress/hello.txt.gz";
+
         Configuration configuration = new Configuration();
-        FileSystem fileSystem = FileSystem.get(new URI(URL), configuration);
+        FileSystem fileSystem = FileSystem.get(new URI(FSConstant.HDFS_URL), configuration);
 
 
-        Path path = new Path(URL);
+        Path inputPath = new Path(FILE_PATH);
 
-        System.out.println(fileSystem.getFileChecksum(path));
+        System.out.println(fileSystem.getFileChecksum(inputPath));
 
         CompressionCodecFactory codecFactory = new CompressionCodecFactory(configuration);
-        CompressionCodec codec = codecFactory.getCodec(path);
+        CompressionCodec codec = codecFactory.getCodec(inputPath);
         if (codec == null) {
-            System.out.println("no found");
+            System.out.println("no codec found");
             System.exit(1);
         }
 
-        String outputURI = CompressionCodecFactory.removeSuffix(URL, codec.getDefaultExtension());
+        String outputURI = CompressionCodecFactory.removeSuffix(FILE_PATH, codec.getDefaultExtension());
 
         InputStream inputStream = null;
         OutputStream outputStream = null;
-
         try {
-            inputStream = codec.createInputStream(fileSystem.open(path));
+            inputStream = codec.createInputStream(fileSystem.open(inputPath));
             outputStream = fileSystem.create(new Path(outputURI));
             IOUtils.copyBytes(inputStream, outputStream, configuration);
         } finally {
