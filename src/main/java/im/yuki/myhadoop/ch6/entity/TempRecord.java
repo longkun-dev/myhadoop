@@ -4,7 +4,7 @@ package im.yuki.myhadoop.ch6.entity;
  * @author longkun
  * @version V1.0
  * @date 2022/7/18 11:58 PM
- * @description 气温纪录实体类
+ * @description 气温记录实体类
  */
 public class TempRecord {
 
@@ -21,7 +21,7 @@ public class TempRecord {
 
     public void parse(String record) {
         year = record.substring(0, 4);
-        temp = Integer.parseInt(record.substring(8, 10));
+        temp = Integer.parseInt(record.substring(8));
     }
 
     public String getYear() {

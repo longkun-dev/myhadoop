@@ -23,7 +23,7 @@ import java.io.IOException;
  * <p>
  * 执行指令
  * hadoop jar target/myhadoop-1.1.0.jar im.yuki.myhadoop.ch6.service.MaxAvgTempDriver \
- * /user/longkun/max_avg_temp/temp.txt \
+ * /user/longkun/max_avg_temp/temp1.txt \
  * /user/longkun/max_avg_temp/output1 \
  * /user/longkun/max_avg_temp/output2
  */

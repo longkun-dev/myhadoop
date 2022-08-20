@@ -1,8 +1,7 @@
 package im.yuki.myhadoop.ch5.service;
 
 import im.yuki.myhadoop.ch6.entity.TempRecord;
-import im.yuki.myhadoop.ch6.service.TempMapper;
-import im.yuki.myhadoop.ch6.service.TempReducer;
+import im.yuki.myhadoop.ch6.service.MaxTemperature;
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
@@ -26,7 +25,7 @@ public class MapperTest {
     @Test
     public void processTest() throws IOException {
         new MapDriver<LongWritable, Text, Text, IntWritable>()
-                .withMapper(new TempMapper())
+                .withMapper(new MaxTemperature.TempMapper())
                 .withInput(new LongWritable(0), new Text("2022010110"))
                 .withOutput(new Text("2022"), new IntWritable(10))
                 .runTest();
@@ -47,7 +46,7 @@ public class MapperTest {
         tempList.add(new IntWritable(20));
 
         new ReduceDriver<Text, IntWritable, Text, IntWritable>()
-                .withReducer(new TempReducer())
+                .withReducer(new MaxTemperature.TempReducer())
                 .withInput(new Text("2022"), tempList)
                 .withOutput(new Text("2022"), new IntWritable(20))
                 .runTest();

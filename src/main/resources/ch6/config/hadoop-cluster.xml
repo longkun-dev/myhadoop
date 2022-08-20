@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- hadoop 集群相关的配置 -->
+<configuration>
+    <property>
+        <name>fs.defaultFS</name>
+        <value>hdfs://hadoop00:9000</value>
+        <final>true</final>
+        <description>hadoop cluster namenode address</description>
+    </property>
+
+    <property>
+        <name>base-path</name>
+        <value>/user/longkun/myhadoop</value>
+        <final>true</final>
+        <description>base file location</description>
+    </property>
+</configuration>

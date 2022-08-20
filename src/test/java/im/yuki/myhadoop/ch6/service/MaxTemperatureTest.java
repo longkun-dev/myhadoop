@@ -11,7 +11,7 @@ import org.junit.Test;
  * @date 2022/7/22 10:20 PM
  * @description 驱动类测试
  */
-public class TempDriverTest {
+public class MaxTemperatureTest {
 
     @Test
     public void test() throws Exception {
@@ -21,13 +21,13 @@ public class TempDriverTest {
         configuration.set("mapreduce.framework.name", "local");
         configuration.setInt("mapreduce.task.io.sort.mb", 1);
 
-        Path input = new Path("files/temp.txt");
+        Path input = new Path("files/temp1.txt");
         Path output = new Path("files/output");
 
         FileSystem fileSystem = FileSystem.getLocal(configuration);
         fileSystem.delete(output, true);
 
-        TempDriver driver = new TempDriver();
+        MaxTemperature driver = new MaxTemperature();
         driver.setConf(configuration);
 
         int exitCode = driver.run(new String[]{input.toString(), output.toString()});

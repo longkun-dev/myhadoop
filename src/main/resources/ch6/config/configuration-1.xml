@@ -10,6 +10,7 @@
     <property>
         <name>size</name>
         <value>10</value>
+        <final>false</final>
         <description>尺寸</description>
     </property>
 

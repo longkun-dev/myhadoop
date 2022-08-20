@@ -8,8 +8,6 @@ import org.junit.Test;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import static org.junit.Assert.*;
-
 /**
  * @author longkun
  * @version V1.0

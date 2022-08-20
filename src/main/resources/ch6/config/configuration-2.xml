@@ -4,4 +4,8 @@
         <name>color</name>
         <value>blue</value>
     </property>
+    <property>
+        <name>size</name>
+        <value>5</value>
+    </property>
 </configuration>
