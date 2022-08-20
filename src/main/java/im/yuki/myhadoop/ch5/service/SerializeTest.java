@@ -38,12 +38,11 @@ public class SerializeTest {
     }
 
     // 反序列化
-    public static byte[] deserialize(Writable writable, byte[] bytes) throws IOException {
+    public static void deserialize(Writable writable, byte[] bytes) throws IOException {
         InputStream inputStream = new ByteArrayInputStream(bytes);
         DataInputStream dataInputStream = new DataInputStream(inputStream);
         writable.readFields(dataInputStream);
         IOUtils.closeStream(inputStream);
         IOUtils.closeStream(dataInputStream);
-        return bytes;
     }
 }
