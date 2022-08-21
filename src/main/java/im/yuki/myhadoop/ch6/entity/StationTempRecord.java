@@ -6,7 +6,7 @@ package im.yuki.myhadoop.ch6.entity;
  * @date 2022/7/23 10:18 PM
  * @description 气温记录值
  */
-public class TempRecord1 {
+public class StationTempRecord {
 
     /**
      * 气象站

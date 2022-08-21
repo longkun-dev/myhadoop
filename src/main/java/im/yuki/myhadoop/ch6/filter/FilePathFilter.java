@@ -1,4 +1,4 @@
-package im.yuki.myhadoop.ch6.entity;
+package im.yuki.myhadoop.ch6.filter;
 
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.fs.PathFilter;

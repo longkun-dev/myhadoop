@@ -21,7 +21,7 @@ public class TempRecord1Test {
         System.out.println(dataLine2.substring(0, 2));
         System.out.println(dataLine2.substring(3, 11));
         System.out.println(dataLine2.substring(17));
-        TempRecord1 record1 = new TempRecord1();
+        StationTempRecord record1 = new StationTempRecord();
         record1.parse(dataLine1);
         System.out.println(record1.getStation());
         System.out.println(record1.getDate());
