@@ -4,8 +4,12 @@ import im.yuki.myhadoop.ch8.entity.Employee;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.conf.Configured;
 import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
-import org.apache.hadoop.mapred.lib.IdentityReducer;
+import org.apache.hadoop.mapred.MapReduceBase;
+import org.apache.hadoop.mapred.Mapper;
+import org.apache.hadoop.mapred.OutputCollector;
+import org.apache.hadoop.mapred.Reporter;
 import org.apache.hadoop.mapred.lib.db.DBInputFormat;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.db.DBConfiguration;
@@ -13,13 +17,31 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.util.Tool;
 import org.apache.hadoop.util.ToolRunner;
 
+import java.io.IOException;
+
 /**
  * @author longkun
  * @version V1.0
  * @date 2022/7/31 12:56 AM
  * @description employee driver 类
  */
-public class EmployeeDriver extends Configured implements Tool {
+public class EmployeeImportFromDB extends Configured implements Tool {
+
+    public static class EmployeeMapper extends MapReduceBase implements Mapper<LongWritable, Employee, LongWritable, Text> {
+
+        @Override
+        public void map(LongWritable longWritable,
+                        Employee employee,
+                        OutputCollector<LongWritable, Text> outputCollector,
+                        Reporter reporter) throws IOException {
+            String recordLine = employee.getNo() + " "
+                    + employee.getName() + " "
+                    + employee.getSex() + " "
+                    + employee.getAge();
+            outputCollector.collect(longWritable, new Text(recordLine));
+        }
+    }
+
 
     @Override
     public int run(String[] args) throws Exception {
@@ -48,7 +70,7 @@ public class EmployeeDriver extends Configured implements Tool {
     }
 
     public static void main(String[] args) throws Exception {
-        int exitCode = ToolRunner.run(new EmployeeDriver(), args);
+        int exitCode = ToolRunner.run(new EmployeeImportFromDB(), args);
         System.exit(exitCode);
     }
 }

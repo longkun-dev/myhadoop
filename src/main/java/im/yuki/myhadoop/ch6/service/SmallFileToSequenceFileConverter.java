@@ -1,5 +1,6 @@
 package im.yuki.myhadoop.ch6.service;
 
+import im.yuki.myhadoop.ch8.service.WholeFileInputFormat;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.conf.Configured;
 import org.apache.hadoop.fs.Path;

@@ -1,4 +1,4 @@
-package im.yuki.myhadoop.ch6.service;
+package im.yuki.myhadoop.ch8.service;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.hadoop.conf.Configuration;
@@ -16,7 +16,7 @@ import org.apache.hadoop.mapreduce.lib.input.FileSplit;
  * @author longkun
  * @version V1.0
  * @date 2022/7/30 11:51 AM
- * @description 读取整个文件
+ * @description 将整个文件做为一条记录处理
  */
 public class WholeFileRecorder extends RecordReader<NullWritable, BytesWritable> {
 

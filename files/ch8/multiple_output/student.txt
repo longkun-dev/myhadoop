@@ -1,0 +1,10 @@
+grade1 stu11
+grade1 stu12
+grade1 stu13
+grade2 stu21
+grade2 stu22
+grade2 stu23
+grade2 stu24
+grade2 stu25
+grade3 stu31
+grade3 stu32

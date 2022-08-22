@@ -1,4 +1,4 @@
-package im.yuki.myhadoop.ch6.service;
+package im.yuki.myhadoop.ch8.service;
 
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.BytesWritable;
@@ -8,8 +8,6 @@ import org.apache.hadoop.mapreduce.JobContext;
 import org.apache.hadoop.mapreduce.RecordReader;
 import org.apache.hadoop.mapreduce.TaskAttemptContext;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
-
-import java.io.IOException;
 
 /**
  * @author longkun
@@ -25,7 +23,8 @@ public class WholeFileInputFormat extends FileInputFormat<NullWritable, BytesWri
     }
 
     @Override
-    public RecordReader<NullWritable, BytesWritable> createRecordReader(InputSplit inputSplit, TaskAttemptContext taskAttemptContext) throws IOException, InterruptedException {
+    public RecordReader<NullWritable, BytesWritable> createRecordReader(InputSplit inputSplit,
+                                                                        TaskAttemptContext taskAttemptContext) {
         WholeFileRecorder wholeFileRecorder = new WholeFileRecorder();
         wholeFileRecorder.initialize(inputSplit, taskAttemptContext);
         return wholeFileRecorder;
