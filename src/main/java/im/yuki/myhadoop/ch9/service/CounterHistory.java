@@ -10,6 +10,17 @@ import org.apache.hadoop.util.ToolRunner;
  * @version V1.0
  * @date 2022/8/4 11:48 PM
  * @description 查看历史记录中计数器的值
+ *
+ * hadoop jar myhadoop-1.1.0.jar im.yuki.myhadoop.ch9.service.CounterHistory job_1661345426209_0002
+ * output:
+ * 完成时间: 1661346954537
+ * 日志链接: hdfs://hadoop00:9000/tmp/hadoop-yarn/staging/history/done/2022/08/24/000000/
+ * job_1661345426209_0002-1661346936136-hadoop00-counterJob-1661346954537-2-1-SUCCEEDED-root.longkun.dev-1661346942441.jhist
+ * 任务名称: counterJob
+ * 任务状态: SUCCEEDED
+ * 优先级: DEFAULT
+ * LENGTH_THAN_5_CNT: 2
+ * allLineCount: 10
  */
 public class CounterHistory extends Configured implements Tool {
 
@@ -35,7 +46,7 @@ public class CounterHistory extends Configured implements Tool {
         System.out.printf("优先级: %s\n", job.getPriority());
 
         Counters counters = job.getCounters();
-        Counter counter = counters.findCounter(CounterMapper.Length.LENGTH_THAN_5_CNT);
+        Counter counter = counters.findCounter(MyCounter.CounterMapper.Length.LENGTH_THAN_5_CNT);
         long value = counter.getValue();
 
         long value1 = counters.findCounter("DynamicCounter", "allLineCount").getValue();
