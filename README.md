@@ -1,5 +1,5 @@
 # myhadoop
-学习《Hadoop权威指南》时写的代码，正在进行整理。
+学习《Hadoop权威指南》时写的代码及过程中使用到的文件。
 
 # 相关软件版本
 * Hadoop 版本：Hadoop 3.2.3，学习 Hadoop 集群升级时升级到 Hadoop 3.2.4，集群中共 1 个 Namenode，1 个 SecondaryNamenode，4 个 DataNode
