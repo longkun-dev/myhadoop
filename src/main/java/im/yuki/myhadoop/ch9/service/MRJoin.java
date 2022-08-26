@@ -17,13 +17,15 @@ import org.apache.hadoop.util.Tool;
 import org.apache.hadoop.util.ToolRunner;
 
 import java.io.IOException;
-import java.util.Iterator;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author longkun
  * @version V1.0
  * @date 2022/8/7 6:08 PM
  * @description MapReduce 实现两张表的连接
+
  */
 public class MRJoin extends Configured implements Tool {
 
@@ -53,7 +55,7 @@ public class MRJoin extends Configured implements Tool {
     }
 
     // 避免数据量大时 Reducer 内存不够用，在数据进入 Reducer 之前对同一个 key 下的 values 进行排序
-    // 只能对键尽心排序
+    // 只能对键进行排序
     public static class KeyComparator extends Text.Comparator {
         public KeyComparator() {
             super();
@@ -70,30 +72,19 @@ public class MRJoin extends Configured implements Tool {
     public static class MRJoinReducer extends Reducer<Text, Text, Text, NullWritable> {
         @Override
         protected void reduce(Text key, Iterable<Text> values, Context context) throws IOException, InterruptedException {
-//            List<String> nationList = new ArrayList<>();
-//            List<String> specialtyList = new ArrayList<>();
-//            for (Text value : values) {
-//                String val = value.toString();
-//                if (val.startsWith("00")) {
-//                    nationList.add(val.replace("00", ""));
-//                } else {
-//                    specialtyList.add(val.replace("11", ""));
-//                }
-//            }
-//
-//            for (String specialty : specialtyList) {
-//                context.write(new Text(nationList.get(0) + " " + specialty), NullWritable.get());
-//            }
-            Iterator<Text> iterator = values.iterator();
-            Text next = iterator.next();
-            String nationName = next.toString().replace("0", "");
-            System.out.println("nationName: " + nationName);
-            while (iterator.hasNext()) {
-                Text line = iterator.next();
-                String outVal = line.toString().replace("1", "");
-                System.out.println("outVal: " + outVal);
-                context.write(new Text(nationName + " " + outVal),
-                        NullWritable.get());
+            List<String> nationList = new ArrayList<>();
+            List<String> specialtyList = new ArrayList<>();
+            for (Text value : values) {
+                String val = value.toString();
+                if (val.startsWith("0")) {
+                    nationList.add(val.replace("0", ""));
+                } else {
+                    specialtyList.add(val.replace("1", ""));
+                }
+            }
+
+            for (String specialty : specialtyList) {
+                context.write(new Text(nationList.get(0) + " " + specialty), NullWritable.get());
             }
         }
     }
@@ -101,7 +92,7 @@ public class MRJoin extends Configured implements Tool {
     @Override
     public int run(String[] args) throws Exception {
         Configuration configuration = new Configuration();
-        configuration.set("mapreduce.job.queuename", "dev");
+        configuration.set("mapreduce.job.queuename", "root.longkun.dev");
 
         Job job = Job.getInstance(configuration, "MRJoinJob");
         job.setJarByClass(getClass());

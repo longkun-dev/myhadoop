@@ -2,6 +2,6 @@ Music JP 好听的日本轻音乐
 Fruit TW 台湾的热带水果
 Plane US 美国波音公司设计制造的飞机
 Rocket EU 欧洲航空局的火箭
-GirlGroup KR 韩国的少女偶像团体
-AV JP 好看的日本AV
-Missile KR 专门为朝鲜准备的萨德导弹
+GirlGroup KR 漂亮的少女偶像团体
+AdultVideo JP 好看的日本成人电影
+Missile KR 专门为朝鲜准备的导弹

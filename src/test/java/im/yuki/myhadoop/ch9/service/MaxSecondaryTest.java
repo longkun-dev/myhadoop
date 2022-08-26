@@ -24,7 +24,7 @@ public class MaxSecondaryTest {
 
     @Test
     public void test2() throws Exception {
-        String path = "files/max-second/test_data.txt";
+        String path = "files/max-second/temperature.txt";
         File file = new File(path);
         if (!file.exists()) {
             file.createNewFile();
@@ -49,7 +49,7 @@ public class MaxSecondaryTest {
     // 验证最大值正确与否
     @Test
     public void test3() throws Exception {
-        String path = "files/max-second/test_data.txt";
+        String path = "files/max-second/temperature.txt";
         File file = new File(path);
         if (!file.exists()) {
             System.err.println("数据文件不存在");
